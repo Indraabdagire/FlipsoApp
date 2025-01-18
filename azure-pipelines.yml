@@ -38,7 +38,7 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'restore'
-    projects: '**/*.csproj'
+    projects: 'FlipsoApp/FlipsoApp/FlipsoApp.csproj'
     arguments: '--verbosity detailed'
 
 
@@ -46,13 +46,13 @@ steps:
   displayName: 'Restore Nuget Packages'
   inputs:
     command: 'restore'
-    projects: '**/*.csproj'
+    projects: 'FlipsoApp/FlipsoApp/FlipsoApp.csproj'
 
 - task: DotNetCoreCLI@2
   displayName: 'build'
   inputs:
     command: 'build'
-    projects: '**/*.csproj'
+    projects: 'FlipsoApp/FlipsoApp/FlipsoApp.csproj'
 
 - task: DotNetCoreCLI@2
   inputs:
