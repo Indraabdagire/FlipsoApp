@@ -19,40 +19,24 @@ steps:
     packageType: 'sdk'
     version: '5.x'
     installationPath: $(Agent.ToolsDirectory)/dotnet
-- task: PowerShell@2
-  displayName: 'Print Project Directory'
-  inputs:
-    targetType: 'inline'
-    script: 'Get-ChildItem -Recurse'
-- task: Bash@3
-  displayName: 'Print Project Directory'
-  inputs:
-    targetType: 'inline'
-    script: 'ls -R'
 - task: DotNetCoreCLI@2 
   displayName: 'Clear NuGet Cache'
   inputs:
     command: 'custom'
     custom: 'nuget'
     arguments: 'locals all --clear'
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'restore'
-    projects: 'FlipsoApp/FlipsoApp/FlipsoApp.csproj'
-    arguments: '--verbosity detailed'
-
 
 - task: DotNetCoreCLI@2
   displayName: 'Restore Nuget Packages'
   inputs:
     command: 'restore'
-    projects: 'FlipsoApp/FlipsoApp/FlipsoApp.csproj'
+    projects: 'FlipsoApp/FlipsoApp.csproj'
 
 - task: DotNetCoreCLI@2
   displayName: 'build'
   inputs:
     command: 'build'
-    projects: 'FlipsoApp/FlipsoApp/FlipsoApp.csproj'
+    projects: 'FlipsoApp/FlipsoApp.csproj'
 
 - task: DotNetCoreCLI@2
   inputs:
