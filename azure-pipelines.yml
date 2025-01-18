@@ -27,12 +27,6 @@ steps:
     arguments: 'locals all --clear'
 
 - task: DotNetCoreCLI@2
-  displayName: 'Restore Nuget Packages'
-  inputs:
-    command: 'restore'
-    projects: 'FlipsoApp/FlipsoApp.csproj'
-
-- task: DotNetCoreCLI@2
   displayName: 'build'
   inputs:
     command: 'build'
