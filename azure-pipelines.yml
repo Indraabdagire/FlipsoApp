@@ -25,6 +25,15 @@ steps:
     command: 'custom'
     custom: 'nuget'
     arguments: 'locals all --clear'
+
+- task: PowerShell@2
+  displayName: 'Print Project Directory'
+  inputs:
+    targetType: 'inline'
+    script: |
+      Write-Host "Current Directory: $(System.DefaultWorkingDirectory)"
+      Get-ChildItem -Path $(System.DefaultWorkingDirectory) -Recurse
+
 - script: dotnet restore 
   displayName: 'Restore NuGet Packages'
 - task: DotNetCoreCLI@2
