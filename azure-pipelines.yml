@@ -34,7 +34,7 @@ steps:
     configuration: '$(buildConfiguration)'
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: 'Azure_pipeline'
+    azureSubscription: 'Azueservice01'
     appName: 'Flipso'
     package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
     appType: webApp
