@@ -31,6 +31,6 @@ steps:
 
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: 'your-azure-subscription-name'
-    appName: 'your-azure-app-name'
+    azureSubscription: 'Azure_pipeline'
+    appName: 'MyAzurepipeline'
     package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
