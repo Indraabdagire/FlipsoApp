@@ -32,9 +32,9 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-- task: AzureWebApp@1
+- task: AzureRmWebAppDeployment@4
   inputs:
     azureSubscription: 'Azueservice01'
-    appName: 'Flipso'
+    WebappName: 'Flipso'
     package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
     appType: webApp
