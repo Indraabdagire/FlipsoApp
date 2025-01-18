@@ -2,9 +2,16 @@ trigger:
   branches:
     include:
       - main
+pr:
+  - '*'
 
 pool:
   vmImage: 'windows-latest'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatfrom: 'Any CPU'
+  buildConfiguration: 'Release'
 
 steps:
 - task: UseDotNet@2
@@ -13,24 +20,20 @@ steps:
     version: '6.x'
     installationPath: $(Agent.ToolsDirectory)/dotnet
 
-- task: Restore@2
+- task: DotNetCoreCLI@2
   inputs:
     command: 'restore'
     projects: '**/*.csproj'
 
-- task: Build@1
+- task: DotNetCoreCLI@2
   inputs:
+    command: 'build'
     projects: '**/*.csproj'
 
-- task: Publish@1
+- task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
     publishWebProjects: true
     arguments: '--configuration Release --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: true
 
-- task: AzureWebApp@1
-  inputs:
-    azureSubscription: 'Azure_pipeline'
-    appName: 'MyAzurepipeline'
-    package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
