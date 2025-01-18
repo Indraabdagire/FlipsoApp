@@ -17,8 +17,19 @@ steps:
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
-    version: '9.x'
+    version: '5.x'
     installationPath: $(Agent.ToolsDirectory)/dotnet
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'custom'
+    custom: 'nuget'
+    arguments: 'locals all -clear'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    projects: '**/*.csproj'
+    arguments: '--verbosity detailed'
+
 
 - task: DotNetCoreCLI@2
   displayName: 'Restore Nuget Packages'
