@@ -19,7 +19,16 @@ steps:
     packageType: 'sdk'
     version: '5.x'
     installationPath: $(Agent.ToolsDirectory)/dotnet
-
+- task: PowerShell@2
+  displayName: 'Print Project Directory'
+  inputs:
+    targetType: 'inline'
+    script: 'Get-ChildItem -Recurse'
+- task: Bash@3
+  displayName: 'Print Project Directory'
+  inputs:
+    targetType: 'inline'
+    script: 'ls -R'
 - task: DotNetCoreCLI@2 
   displayName: 'Clear NuGet Cache'
   inputs:
@@ -32,16 +41,6 @@ steps:
     projects: '**/*.csproj'
     arguments: '--verbosity detailed'
 
-- task: PowerShell@2
-  displayName: 'Print Project Directory'
-  inputs:
-    targetType: 'inline'
-    script: 'Get-ChildItem -Recurse'
-- task: Bash@3
-  displayName: 'Print Project Directory'
-  inputs:
-    targetType: 'inline'
-    script: 'ls -R'
 
 - task: DotNetCoreCLI@2
   displayName: 'Restore Nuget Packages'
