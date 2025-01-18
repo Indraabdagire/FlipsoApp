@@ -30,7 +30,7 @@ steps:
   displayName: 'build'
   inputs:
     command: 'build'
-    projects: 'FlipsoApp/FlipsoApp.csproj'
+    projects: '**/*.sln'
 
 - task: DotNetCoreCLI@2
   inputs:
