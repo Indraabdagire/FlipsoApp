@@ -35,6 +35,6 @@ steps:
 - task: AzureWebApp@1
   inputs:
     azureSubscription: 'Azure_pipeline'
-    appName: 'MyAzurepipeline'
+    appName: 'Flipso'
     package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
     appType: webApp
